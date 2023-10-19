@@ -1,11 +1,11 @@
 ﻿- [C# Naming Convention](#c-naming-convention)
-  - [Naming Convention](#naming-convention)
+  - [Common naming convention](#common-naming-convention)
     - [Assemblies](#assemblies)
-    - [DLLs](#dlls)
-    - [Namespaces](#namespaces)
+      - [DLL / EXE](#dll--exe)
+    - [namespaces](#namespaces)
     - [Class](#class)
-    - [Interface](#interface)
-    - [Abstract](#abstract)
+    - [interface](#interface)
+    - [abstract](#abstract)
     - [struct](#struct)
     - [record](#record)
     - [Enumerations](#enumerations)
@@ -20,75 +20,97 @@
 
 
 # C# Naming Convention
-Improved Communication — “The best code communicates itself” . Any member of a development will be able to read and understand the code of another member through code.
-Improved Code integration — Distinct teams that rely on the code built by other teams won’t have problem understanding properly named interface and its entities.
-Improved Consistency — Helps formalize expectations and promote consistency within a development team.
-Improved clarity — Provides better understanding in case of code reuse after a long interval of time. Enhances clarity in cases of potential ambiguity.
-## Naming Convention 
+**Improved Communication** — “The best code communicates itself” . Any member of a development will be able to read and understand the code of another member through code.  
+**Improved Code integration** — Distinct teams that rely on the code built by other teams won’t have problem understanding properly named interface and its entities.  
+**Improved Consistency** — Helps formalize expectations and promote consistency within a development team.  
+**Improved clarity** — Provides better understanding in case of code reuse after a long interval of time. Enhances clarity in cases of potential ambiguity.
+
+**Note**: this guideline is only for naming convention. No code quality rules (except naming conventions) are added in this guideline.
+## Common naming convention 
+- use PascalCase / camelCase
+- do not use underscore or hyphen in your name
+- do not use hungarian notation, eg. `iName` for `int name`
+- do not use type identification. eg. `strName` for `string name`
+- do not use Screaming Caps (all uppercase) for constants or readonly variables. eg. SHIPPINGTYPE 
+- do not use abbreviations. except some commonly used abbreviations, eg. Id, Xml, Ftp, Uri
+- do use PascalCase for abbreviations with 3 or more chars. eg. `FtpTransfer` 
+- do use both uppercase for 2 char abbreviations. eg. `UIControl`
+- do use implicit type var for local variable declarations. eg. `var customers = new Dictionary();`
 
 ### Assemblies 
-### DLLs
-### Namespaces
+[Assemblies](https://learn.microsoft.com/en-us/dotnet/standard/assembly/)  
+✅ DO assembly name with PascalCase.PascalCase....  
+✅ DO assembly name with singular  
+#### DLL / EXE
+✅ DO name with PascalCase.PascalCase....  
+✅ DO name with singular  
+### namespaces
+[namespace](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/namespace)
+✅ DO organize namespaces with a clearly defined structure  
+✅ DO maintain namespace with folder names  
+✅ DO use `.` for multiple name. eg. `WepApp.Infrastructure.Reposiotories`
 ### Class
-
-:heavy_check_mark: DO  
-- Do class name with PascalCase
-- Do class name with nouns or noun phrases
-- DO method name with verb phrases  
-- CONSIDER ending the name of derived classes with the name of the base class.
-- Add postfix based on purpose
+[class](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/class)   
+✅ Do class name with `PascalCase`  
+✅ Do class name with `nouns` or `noun` phrases  
+✅ DO method name with verb phrases    
+✅ CONSIDER ending the name of derived classes with the name of the base class.  
+✅ Add postfix based on purpose
   - `CustomerModel`
   - `CustomerVm`
   - `CustomerDto`
   - `CustomerCreateRequest`
   - `CustomerCreateCommand`
-  - `CustomerCreateHandler`
+  - `CustomerCreateHandler`  
+  
+✅ DO CONSIDER ending the name of derived classes with the name of the base class. eg. `ArgumentOutOfRangeException` which is derived from `Exception`  
+✅ DO ensure that the names differ only by the "I" prefix on the interface name when you are defining a class–interface pair where the class is a standard implementation of the interface.
 
+❌ DO NOT give class names a prefix (e.g., "C")  
+❌ DO NOT use abbreviations  
+❌ DO NOT add prefix, For example `VmCustomer`, `CommandCustomerCreate`, You type `Vm` and press the completion key and are bombarded with a mile-long list of every class in the system.  
+❌ DO NOT use any words which is shorter than 3 chararcters & which does not add any meaning.
 
-:x: DON'T
-- DO NOT give class names a prefix (e.g., "C")
-- avoid abbreviations
-- DO NOT add prefix, For example `VmCustomer`, `CommandCustomerCreate`, You type `Vm` and press the completion key and are bombarded with a mile-long list of every class in the system.
-
-
-### Interface
-:heavy_check_mark: DO  
-- Do class name with PascalCase
-- Do class name with `I` Prefix. For example
+### interface
+[interface](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/interface)
+✅ Do interface name with PascalCase  
+✅ DO prefix interface names with the letter `I`, to indicate that the type is an interface.. For example
   - `IComponent` (descriptive noun),
   - `ICustomAttributeProvider` (noun phrase)
-  - `IPersistable` (adjective) are appropriate interface names.
-- DO name interfaces with adjective phrases, or occasionally with nouns or noun phrases.
-- DO method name with verb phrases  
-- DO ensure that the names differ only by the `I` prefix on the interface name when you are defining a class–interface pair. For example
+  - `IPersistable` (adjective) are appropriate interface names.  
+  
+✅ DO name interfaces with adjective phrases, or occasionally with nouns or noun phrases.
+✅ DO method name with verb phrases  
+✅ DO ensure that the names differ only by the `I` prefix on the interface name when you are defining a class–interface pair. For example
   - interface `IComponent`, class `Component`
   - interface `ICustomAttributeProvider`, class `CustomAttributeProvider`
   - interface `IPersistable`, class `Persistable`
 
-:x: DON'T
-- avoid abbreviations
+❌ DO NOT use abbreviations for interface name, field, properties, method etc.
 
-### Abstract
+### abstract
+[abstract](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/abstract)
 ### struct
+[struct]()
 ### record
+[record]()
+
 ### Enumerations
-Names of enumeration types (also called enums) in general should follow the standard type-naming rules (PascalCasing, etc.). However, there are additional guidelines that apply specifically to enums.
+✅ DO `PascalCase` for enum name and member name  
+✅ DO use a singular type name for an enumeration unless its values are bit fields.  
+✅ DO use a plural type name for an enumeration with bit fields as values, also called flags enum.
 
-✔️ DO use a singular type name for an enumeration unless its values are bit fields.
-
-✔️ DO use a plural type name for an enumeration with bit fields as values, also called flags enum.
-
-❌ DO NOT use an "Enum" suffix in enum type names.
-
-❌ DO NOT use "Flag" or "Flags" suffixes in enum type names.
-
-❌ DO NOT use a prefix on enumeration value names (e.g., "ad" for ADO enums, "rtf" for rich text enums, etc.).
+❌ DO NOT use an "Enum" suffix in enum type names.  
+❌ DO NOT use "Flag" or "Flags" suffixes in enum type names.  
+❌ DO NOT use a prefix on enumeration value names (e.g., "ad" for ADO enums, "rtf" for rich text enums, etc.).  
+❌ DO NOT use abbreviation for any word  
+❌ DO NOT use any abbreviation prefix  
 ### Names of Generic Type Parameters
 Generics were added to .NET Framework 2.0. The feature introduced a new kind of identifier called type parameter.
 
-✔️ DO name generic type parameters with descriptive names unless a single-letter name is completely self-explanatory and a descriptive name would not add value.
+✅ DO name generic type parameters with descriptive names unless a single-letter name is completely self-explanatory and a descriptive name would not add value.
 
-✔️ CONSIDER using T as the type parameter name for types with one single-letter type parameter.
+✅ CONSIDER using T as the type parameter name for types with one single-letter type parameter.
 
 C#
 
@@ -134,6 +156,8 @@ CodeAccessPermission IPermission	✔️ DO add the suffix "Permission."
 
 ### Naming Enumerations
 ### Names of Type Members
+- DO declare all member variables at the top of a class, with static variables at the very top.
+- DO use predefined type names instead of system type names like Int16, Single, UInt64, etc
 #### Methods
 :heavy_check_mark: DO  
 - DO give methods names that are verbs or verb phrases, because methods are the means of taking action
@@ -180,7 +204,11 @@ The field-naming guidelines apply to static public and protected fields. Interna
 ❌ DO NOT use a prefix for field names.
 
 For example, do not use "g_" or "s_" to indicate static fields.
+*** https://learn.microsoft.com/en-us/previous-versions/dotnet/netframework-1.1/xzf533w0(v=vs.71)?redirectedfrom=MSDN
+*** https://learn.microsoft.com/en-us/dotnet/standard/design-guidelines
 
+
+https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/identifier-names
 https://learn.microsoft.com/en-us/dotnet/standard/design-guidelines/naming-guidelines
 https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/coding-conventions
 https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/naming-rules

@@ -1,69 +1,77 @@
-- [Dotnet Naming Convention Cheatsheet](#dotnet-naming-convention-cheatsheet)
-  - [Namespace](#namespace)
-  - [Type](#type)
-    - [Class](#class)
-    - [Struct](#struct)
-    - [Enum](#enum)
-    - [Record](#record)
-    - [Interface](#interface)
-    - [Nullable types](#nullable-types)
-    - [Tuples](#tuples)
-
-
 # Dotnet Naming Convention Cheatsheet
 
+- [Dotnet Naming Convention Cheatsheet](#dotnet-naming-convention-cheatsheet)
+  - [Naming Convention](#naming-convention)
+    - [Naming Convention Case](#naming-convention-case)
+    - [Naming Convention Case Type](#naming-convention-case-type)
+    - [Naming Convention Word Type](#naming-convention-word-type)
+  - [Example cheat](#example-cheat)
+    - [namespace](#namespace)
+    - [type](#type)
+      - [class](#class)
+      - [Struct](#struct)
+      - [Enum](#enum)
+      - [Record](#record)
+      - [interface](#interface)
+      - [Generic](#generic)
+      - [Nullable types](#nullable-types)
+      - [Tuples](#tuples)
 
-| Identifier                        | Casing      | Example                                  |
-| --------------------------------- | ----------- | ---------------------------------------- |
-| Namespace                         | PascalCase  | System.Security                          |
-| Type                              | PascalCase  | public class StreamReader { ... }        |
-| Class                             | PascalCase  |                                          |
-| Abstract class                    | PascalCase  |                                          |
-| Sealed Class                      | PascalCase  |                                          |
-| Partial Class                     | PascalCase  |                                          |
-| Static Class                      | PascalCase  |                                          |
-| Struct                            | PascalCase  |                                          |
-| Record                            | PascalCase  |                                          |
-| Interface                         | IPascalCase | IEnumerable                              |
-| Enum                              |             | public enum FileMode {}                  |
-| Event                             |             | public event EventHandler Exited;        |
-| Delegate                          | PascalCase  |                                          |
-| const - local                     | PascalCase  |                                          |
-| const - gloabal                   | PascalCase  |                                          |
-| Field - public                    | PascalCase  | public static readonly TimeSpan          |
-| Field - protected                 | PascalCase  |                                          |
-| Field - private                   | _camelCase  |                                          |
-| Field - public readonly           | PascalCase  |                                          |
-| Field - private readonly          | _camelCase  |                                          |
-| Field - protected  readonly       | PascalCase  |                                          |
-| Property                          |             | public string Firstname { get; }         |
-| Property                          |             |                                          |
-| Property                          |             |                                          |
-| Property                          |             |                                          |
-| Property                          |             |                                          |
-| Property                          |             |                                          |
-| Property                          |             |                                          |
-| Property                          |             |                                          |
-| Property - public virtual         |             |                                          |
-| Property - public static readonly |             |                                          |
-| Method                            | PascalCase  | public virtual string ToString();        |
-| Method - constructor              | PascalCase  |                                          |
-| Method - private                  | PascalCase  |                                          |
-| Method - protected                | PascalCase  |                                          |
-| Method - public virtual           | PascalCase  |                                          |
-| Parameter                         | camelCase   | public static int ToInt32(string value); |
-| Local Variable                    | camelCase   |                                          |
+## Naming Convention
+### Naming Convention Case
+| Identifier                        | Casing      | Length | Plural | Word Type       | Example                                  |
+| :-------------------------------- | ----------- | ------ | ------ | --------------- | ---------------------------------------- |
+| Namespace                         | PascalCase  |        | ✅     | Noun            | System.Security                          |
+| Type                              | PascalCase  |        |        | Noun            | public class StreamReader { ... }        |
+| Class                             | PascalCase  |        |        | Noun            |                                          |
+| Abstract class                    | PascalCase  |        |        | Noun            |                                          |
+| Sealed Class                      | PascalCase  |        |        | Noun            |                                          |
+| Partial Class                     | PascalCase  |        |        | Noun            |                                          |
+| Static Class                      | PascalCase  |        |        | Noun            |                                          |
+| Struct                            | PascalCase  |        |        | Noun            |                                          |
+| Record                            | PascalCase  |        |        | Noun            |                                          |
+| Interface                         | IPascalCase |        |        | Noun            | IEnumerable                              |
+| Enum                              |             |        |        | Noun            | public enum FileMode {}                  |
+| Enum (Flags)                      | PascalCase  |        | ✅     | Noun            | [Flags] public enum FileTypes {}         |
+| Event                             |             |        |        | Noun            | public event EventHandler Exited;        |
+| Delegate                          | PascalCase  |        |        | Noun            |                                          |
+| const - local                     | PascalCase  |        |        | Noun, Adjective |                                          |
+| const - gloabal                   | PascalCase  |        |        | Noun, Adjective |                                          |
+| Field - public                    | PascalCase  |        |        | Noun, Adjective | public static readonly TimeSpan          |
+| Field - protected                 | PascalCase  |        |        | Noun, Adjective |                                          |
+| Field - private                   | _camelCase  |        |        | Noun, Adjective |                                          |
+| Field - public readonly           | PascalCase  |        |        | Noun, Adjective |                                          |
+| Field - private readonly          | _camelCase  |        |        | Noun, Adjective |                                          |
+| Field - protected  readonly       | PascalCase  |        |        | Noun, Adjective |                                          |
+| Field List, Collection etc        | PascalCase  |        | ✅     | Noun, Adjective | public List<string> Customers { get; }         |
+| Property                          |             |        |        | Noun, Adjective |                                          |
+| Property                          |             |        |        | Noun, Adjective |                                          |
+| Property                          |             |        |        | Noun, Adjective |                                          |
+| Property                          |             |        |        | Noun, Adjective |                                          |
+| Property                          |             |        |        | Noun, Adjective |                                          |
+| Property                          |             |        |        | Noun, Adjective |                                          |
+| Property                          |             |        |        | Noun, Adjective |                                          |
+| Property - public virtual         |             |        |        | Noun, Adjective |                                          |
+| Property - public static readonly |             |        |        | Noun, Adjective |                                          |
+| Method                            | PascalCase  |        | ✅     | verb            | public virtual string ToString();        |
+| Method - constructor              | PascalCase  |        |        | Noun            |                                          |
+| Method - private                  | PascalCase  |        |        | Noun            |                                          |
+| Method - protected                | PascalCase  |        |        | Noun            |                                          |
+| Method - public virtual           | PascalCase  |        |        | Noun            |                                          |
+| Parameter                         | camelCase   |        |        | Noun            | public static int ToInt32(string value); |
+| Local Variable                    | camelCase   |        |        | Noun            |                                          |
 
 
-| Case Type       | Resource                                                                        |
-| --------------- | ----------------------------------------------------------------------------- |
-| PascalCase      | Type - (class, enum, struct, record), delegate, event, field, property,method |
-| IPascalCase     | interface                                                                     |
-|                 |                                                                               |
-| CamelCase class | method parameter, local variable                                              |
-| _CamelCase      | property (private, private readonly)                                          |
+### Naming Convention Case Type
+| Case Type       | Resource                                                                       |
+| --------------- | ------------------------------------------------------------------------------ |
+| PascalCase      | Type - (class, enum, struct, record), delegate, event, field, property, method |
+| IPascalCase     | interface                                                                      |
+|                 |                                                                                |
+| CamelCase class | method parameter, local variable                                               |
+| _CamelCase      | property (private, private readonly)                                           |
 
-
+### Naming Convention Word Type
 | Word Type | Resource                                                               |
 | --------- | ---------------------------------------------------------------------- |
 | Nown      | Type - (class, enum, struct, record), delegate, event, field, property |
@@ -72,13 +80,17 @@
 | Adjective | local variable                                                         |
 |           |                                                                        |
 
-
-## Namespace
+## Example cheat
+### namespace
+[namespace](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/namespace)
 ```cs
-namespace NamingConvention.NamingConventions {}           // namespace - PascalCase.PascalCase...
+namespace NamingConvention.NamingConventions {}           // PascalCase.PascalCase..., plural except root
 
+# usage
+using NamingConvention.NamingConventions;
+using NamingConventions = NamingConvention.NamingConventions;
 ```
-## Type
+### type
 References: 
 [Type](https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/types)
 
@@ -100,7 +112,7 @@ public event DelegateType SampleEvent;                  // PascalCase
 int? optionalInt = default;                             // camelCase
 ```
 
-### Class
+#### class
 ```cs
 public class ClassService                                 // PascalCase - class name
 {
@@ -221,10 +233,62 @@ public class ClassService                                 // PascalCase - class 
   }
 }
 ```
-### Struct
-### Enum
-### Record
-### Interface
+#### Struct
+[struct](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/struct)
+```cs
+public struct Coord                         // PascalCase, Singular, No "Struct" suffix or No 'struct' or 's' postfix                                   
+{
+    public Coord(double width, double height)   // PascalCase - Constructor , camelCase - argument 
+    {
+        Width = width;
+        Height = height;
+    }
+
+    public double Width { get; }
+    public double Height { get; }
+
+    public override string ToString() => $"({Width}, {Height})";    // PascalCase - method 
+}
+
+// follow class naming convention for struct
+```
+#### Enum
+[enum](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/enum)
+```cs
+enum WorkItemType{                  // PascalCase, Singular, No "Enum" suffix                                    
+    Epic,
+    Feature,
+    UserStory,                      // PascalCase
+    Task,
+    Bug
+}
+
+[Flags]
+enum CategoryTypes{                  // PascalCase, Plural, No "Enum" suffix                                    
+    Group,
+    Single,
+    All = Group | Single
+}
+```
+#### Record
+[record](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record)
+```cs
+public record Person(string FirstName, string LastName);    // PascalCase, Noun
+
+public record Person                                
+{
+    public required string FirstName { get; init; }         // PascalCase
+    public required string LastName { get; init; }
+};
+
+// folllow naming convention like class
+```
+#### interface
+[interface](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/interface)
+```cs
+
+```
+#### Generic
 ```cs
 // generic
 
@@ -241,6 +305,6 @@ public interface ISessionChannel<TSession>
     TSession Session { get; }
 }
 ```
-### Nullable types
-### Tuples
+#### Nullable types
+#### Tuples
 

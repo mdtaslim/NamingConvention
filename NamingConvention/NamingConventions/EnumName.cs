@@ -1,6 +1,11 @@
 ﻿namespace NamingConvention.NamingConventions
 {
-    public class EnumName
+    [Flags]
+    public enum EnumName
     {
+        One,
+        Two,
+        Three,
+        All = (One | Two) & Three
     }
 }
