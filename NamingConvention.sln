@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33414.496
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NamingConvention", "NamingConvention\NamingConvention.csproj", "{EC41110A-3486-40E9-B9AF-1F6074852026}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{3FA5267A-1800-4AAA-9B16-D31441F875A3}"
+	ProjectSection(SolutionItems) = preProject
+		docs\dotnet-naming-convention-cheat-sheet-example.md = docs\dotnet-naming-convention-cheat-sheet-example.md
+		docs\dotnet-naming-convention-cheat-sheet.md = docs\dotnet-naming-convention-cheat-sheet.md
+		docs\Readme.md = docs\Readme.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC41110A-3486-40E9-B9AF-1F6074852026}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC41110A-3486-40E9-B9AF-1F6074852026}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC41110A-3486-40E9-B9AF-1F6074852026}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC41110A-3486-40E9-B9AF-1F6074852026}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {64B9D597-07B1-405A-BAAF-552F5A5D402B}
+	EndGlobalSection
+EndGlobal
