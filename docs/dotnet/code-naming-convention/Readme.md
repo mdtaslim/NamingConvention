@@ -1,13 +1,12 @@
 # Dotnet Naming Convention
 
+<details open="open">
+  <summary>Table of Content</summary>
+
 - [Dotnet Naming Convention](#dotnet-naming-convention)
-- [DOTNET Naming Convention](#dotnet-naming-convention-1)
-  - [Common naming convention](#common-naming-convention)
-    - [Choose your words](#choose-your-words)
-    - [Naming Convention Case](#naming-convention-case)
-    - [Naming Convention Case Type](#naming-convention-case-type)
-    - [Naming Convention Word Type](#naming-convention-word-type)
-    - [Some bad names](#some-bad-names)
+- [Why naming convention](#why-naming-convention)
+  - [Choose your words](#choose-your-words)
+  - [Choose your Case](#choose-your-case)
   - [Convention rules](#convention-rules)
     - [Assemblies](#assemblies)
       - [DLL / EXE](#dll--exe)
@@ -19,7 +18,7 @@
       - [record](#record)
       - [interface](#interface)
       - [abstract](#abstract)
-      - [Names of Common Types](#names-of-common-types)
+      - [Other Types (most common other type)](#other-types-most-common-other-type)
     - [Names of Type Members](#names-of-type-members)
       - [Methods](#methods)
       - [Properties](#properties)
@@ -33,64 +32,109 @@
     - [LINQ](#linq)
     - [Message Broker](#message-broker)
     - [Unit Test](#unit-test)
-
-# DOTNET Naming Convention
-**Improved Communication** — “The best code communicates itself” . Any member of a development will be able to read and understand the code of another member through code.  
-**Improved Code integration** — Distinct teams that rely on the code built by other teams won’t have problem understanding properly named interface and its entities.  
-**Improved Consistency** — Helps formalize expectations and promote consistency within a development team.  
-**Improved clarity** — Provides better understanding in case of code reuse after a long interval of time. Enhances clarity in cases of potential ambiguity.
+  - [Resources](#resources)
+</details>
 
 **Note**: this guideline is only for naming convention. No code quality rules (except naming conventions) are added in this guideline.
 
-## Common naming convention 
-- ✅ Do use word (descriptive names) which have to reveal your intention
-- ✅ Do follow consistent and meaningful single guideline for naming convention. For your organization / project / team wise
-- ✅ Do follow same pattern for a single guideline. eg. GetUsers, GetUserById instead of FetchUsers, GetUserById
-- ✅ Do use PascalCase / camelCase
-- ✅ Do use PascalCase for abbreviations with 3 or more chars. eg. `FtpTransfer` 
-- ✅ Do use both uppercase for 2 char abbreviations. eg. `UIControl`
-- ✅ Do use implicit type var for local variable declarations. eg. `var customers = new Dictionary();`
-- ✅ Do use meaningful names in domain context 
-- DO use PascalCasing for all public member, type, and namespace names consisting of multiple words.
-- ✅ DO use camelCasing for parameter names.
+# Why naming convention
+**Improved Communication** — “The best code communicates itself” . Any member of a development will be able to read and understand the code of another member through code.  
+**Improved Code integration** — Distinct teams that rely on the code built by other teams won’t have problem understanding properly named interface and its entities.  
+**Improved Consistency** — Helps formalize expectations and promote consistency within a development team.  
+**Improved clarity** — Provides better understanding in case of code reuse after a long interval of time. Enhances clarity in cases of potential ambiguity.  
 
-- ❌ Do not use one or two chars name
-- ❌ Do not use abbreviations
-- ❌ Do not use meaningless, disinfromative word
-- ❌ Do not use avoid multi meaning word
-- ❌ Do not use underscore or hyphen in your name
-- ❌ Do not use hungarian notation, eg. `iName` for `int name`
-- ❌ Do not use type identification. eg. `strName` for `string name`
-- ❌ Do not use Screaming Caps (all uppercase) for local / global variables. eg. SHIPPINGTYPE 
-- ❌ Do not use Screaming Caps (all uppercase) for constants or readonly variables. eg. SHIPPINGTYPE 
-- ❌ Do not use abbreviations. except some commonly used abbreviations, eg. Id, Xml, Ftp, Uri
-- ❌ Do not use same variable name with case sensitive
-- ❌ DO NOT capitalize each word in so-called closed-form compound words. eg. FileName, PlaceHolder, EMail
+## Choose your words
+✅ Do use word (descriptive names) which have to reveal your intention  
+✅ Do follow consistent and meaningful single guideline for naming convention. For your organization / project / team wise  
+✅ Do follow same pattern for a single guideline. eg. GetUsers, GetUserById instead of FetchUsers, GetUserById  
+✅ Do use meaningful names in domain context  
+✅ Do use easily readable identifier names.  
+  For example, a property named HorizontalAlignment is more English-readable than AlignmentHorizontal.  
+✅ DO favor readability over brevity.  
+  The property name CanScrollHorizontally is better than ScrollableX (an obscure reference to the X-axis).  
+✅ DO use semantically interesting names rather than language-specific keywords for type names.  
+  For example, GetLength is a better name than GetInt. 
 
-### Choose your words
-- ✅ choose easily readable identifier names.
-  For example, a property named HorizontalAlignment is more English-readable than AlignmentHorizontal.
-- ✅ DO favor readability over brevity.
-  The property name CanScrollHorizontally is better than ScrollableX (an obscure reference to the X-axis).
-- ✅ DO use semantically interesting names rather than language-specific keywords for type names.
-  For example, GetLength is a better name than GetInt.
+❌ Do not use one or two chars name  
+❌ Do not use abbreviations. except some commonly used abbreviations, eg. Id, Xml, Ftp, Uri  
+❌ Do not use meaningless, disinfromative word  
+❌ Do not use multi meaning word  
+❌ Do not use underscore or hyphen in your name  
+❌ Do not use same variable name with case sensitive  
+❌ Do not use hungarian notation, eg. `iName` for `int name`  
+❌ Do not use type identification. eg. `strName` for `string name`  
 
-- ❌ DO NOT use underscores, hyphens, or any other nonalphanumeric characters.
-- ❌ DO NOT use Hungarian notation.
-- ❌ AVOID using identifiers that conflict with keywords of widely used programming languages.
-- ❌ DO NOT use abbreviations or contractions as part of identifier names.
-  For example, use GetWindow rather than GetWin.
-- ❌ DO NOT use any acronyms that are not widely accepted, and even if they are, only when necessary.
+<details open="open">
+  <summary>Word Type</summary>
 
-- ✅ DO use a name similar to the old API when creating new versions of an existing API. This helps to highlight the relationship between the APIs.
-- ✅ DO prefer adding a suffix rather than a prefix to indicate a new version of an existing API.
-This will assist discovery when browsing documentation, or using IntelliSense. The old version of the API will be organized close to the new APIs, because most browsers and IntelliSense show identifiers in alphabetical order.
-- ✅ CONSIDER using a brand new, but meaningful identifier, instead of adding a suffix or a prefix.
-- ✅ DO use a numeric suffix to indicate a new version of an existing API, particularly if the existing name of the API is the only name that makes sense (i.e., if it is an industry standard) and if adding any meaningful suffix (or changing the name) is not an appropriate option.
-- ✅ DO use the "64" suffix when introducing versions of APIs that operate on a 64-bit integer (a long integer) instead of a 32-bit integer. You only need to take this approach when the existing 32-bit API exists; don't do it for brand new APIs with only a 64-bit version.
-- ❌ DO NOT use the "Ex" (or a similar) suffix for an identifier to distinguish it from an earlier version of the same API.
-  
-### Naming Convention Case
+| Word Type | Resource                                                               |
+| --------- | ---------------------------------------------------------------------- |
+| Nown      | Type - (class, enum, struct, record), delegate, event, field, property |
+| Verb      | method                                                                 |
+|           |                                                                        |
+| Adjective | local variable                                                         |
+|           |                                                                        |
+</details>
+
+<details open="open">
+  <summary>Some bad names</summary>
+
+| ❌ Bad                         | ✅ Good                |
+| ------------------------------ | ---------------------- |
+| cust                           | customer               |
+| usr                            | user                   |
+| userList, userCollection, list | users                  |
+| lastName                       | lastname               |
+| firstName                      | firstname              |
+| MetaData                       | Metadata               |
+| endpoint                       | EndPoint               |
+| SignOn                         | SignIn                 |
+| SignOff                        | SignOut                |
+| hashtable                      | HashTable              |
+| ID                             | Id                     |
+| Username                       | UserName               |
+| attr                           | attribute              |
+| res                            | response, result       |
+| act                            | actual                 |
+| ex                             | exception              |
+| num                            | number                 |
+| sys                            | system                 |
+| PlaceHolder                    | placeholder            |
+| calc                           | calculation            |
+| vald                           | validation             |
+| fs                             | FileStream, fileStream |
+| ts                             | transactionScope       |
+| pos                            | position, positive     |
+| GetInt                         | GetLength              |
+| GetWin                         | GetWindow              |
+</details>
+
+## Choose your Case  
+✅ Do use PascalCase / camelCase  
+✅ Do use PascalCase for abbreviations with 3 or more chars. eg. `FtpTransfer`  
+✅ Do use both uppercase for 2 char abbreviations. eg. `UIControl`  
+✅ Do use implicit type var for local variable declarations. eg. `var customers = new Dictionary();`  
+✅ DO use PascalCasing for all public member, type, and namespace names consisting of multiple words.  
+✅ DO use camelCasing for parameter names.  
+✅ DO use a name similar to the old API when creating new versions of an existing API. This helps to highlight the relationship between the APIs.  
+✅ DO prefer adding a suffix rather than a prefix to indicate a new version of an existing API.  
+This will assist discovery when browsing documentation, or using IntelliSense. The old version of the API will be organized close to the new APIs, because most browsers and IntelliSense show identifiers in alphabetical order.  
+✅ CONSIDER using a brand new, but meaningful identifier, instead of adding a suffix or a prefix.  
+✅ DO use a numeric suffix to indicate a new version of an existing API, particularly if the existing name of the API is the only name that makes sense (i.e., if it is an industry standard) and if adding any meaningful suffix (or changing the name) is not an appropriate option.  
+✅ DO use the "64" suffix when introducing versions of APIs that operate on a 64-bit integer (a long integer) instead of a 32-bit integer. You only need to take this approach when the existing 32-bit API exists; don't do it for brand new APIs with only a 64-bit version.  
+ 
+❌ DO NOT use underscores, hyphens, or any other nonalphanumeric characters.  
+❌ AVOID using identifiers that conflict with keywords of widely used programming languages.  
+❌ DO NOT use abbreviations or contractions as part of identifier names. For example, use `GetWindow` rather than `GetWin`.  
+❌ DO NOT use any acronyms that are not widely accepted, and even if they are, only when necessary.  
+❌ Do not use Screaming Caps (all uppercase) for local / global variables. eg. `SHIPPINGTYPE`   
+❌ Do not use Screaming Caps (all uppercase) for constants or readonly variables. eg. `SHIPPINGTYPE`  
+❌ DO NOT capitalize each word in so-called closed-form compound words. eg. `FileName`, `PlaceHolder`, `EMail`   
+❌ DO NOT use the "Ex" (or a similar) suffix for an identifier to distinguish it from an earlier version of the same API. 
+
+<details open="open">
+  <summary>Case cheatsheet</summary>
+
 | Identifier                        | Casing      | Length | Plural | Word Type       | Example                                  |
 | :-------------------------------- | ----------- | ------ | ------ | --------------- | ---------------------------------------- |
 | Namespace                         | PascalCase  |        | ✅     | Noun            | System.Security                          |
@@ -135,9 +179,11 @@ This will assist discovery when browsing documentation, or using IntelliSense. T
 | Method - public virtual           | PascalCase  |        |        | Noun            |                                          |
 | Parameter                         | camelCase   |        |        | Noun            | public static int ToInt32(string value); |
 | Local Variable                    | camelCase   |        |        | Noun            |                                          |
+</details>
 
+<details open="open">
+  <summary>Case Type</summary>
 
-### Naming Convention Case Type
 | Case Type       | Resource                                                                       |
 | --------------- | ------------------------------------------------------------------------------ |
 | PascalCase      | Type - (class, enum, struct, record), delegate, event, field, property, method |
@@ -145,18 +191,12 @@ This will assist discovery when browsing documentation, or using IntelliSense. T
 |                 |                                                                                |
 | CamelCase class | method parameter, local variable                                               |
 | _CamelCase      | property (private, private readonly)                                           |
+</details>
 
-### Naming Convention Word Type
-| Word Type | Resource                                                               |
-| --------- | ---------------------------------------------------------------------- |
-| Nown      | Type - (class, enum, struct, record), delegate, event, field, property |
-| Verb      | method                                                                 |
-|           |                                                                        |
-| Adjective | local variable                                                         |
-|           |                                                                        |
+<details open="open">
+  <summary>Wrong Case</summary>  
 
-
-| Pascal      | Camel       | Not                |
+| ✅ Pascal   | ✅ Camel    | ❌ Not             |
 | ----------- | ----------- | ------------------ |
 | BitFlag     | bitFlag     | Bitflag            |
 | Callback    | callback    | CallBack           |
@@ -183,53 +223,21 @@ This will assist discovery when browsing documentation, or using IntelliSense. T
 | UserName    | userName    | Username           |
 | WhiteSpace  | whiteSpace  | Whitespace         |
 | Writable    | writable    | Writeable          |
-
-
-### Some bad names
-
-| ❌ Bad                         | ✅ Good                |
-| ------------------------------ | ---------------------- |
-| cust                           | customer               |
-| usr                            | user                   |
-| userList, userCollection, list | users                  |
-| lastName                       | lastname               |
-| firstName                      | firstname              |
-| MetaData                       | Metadata               |
-| endpoint                       | EndPoint               |
-| SignOn                         | SignIn                 |
-| SignOff                        | SignOut                |
-| hashtable                      | HashTable              |
-| ID                             | Id                     |
-| Username                       | UserName               |
-| attr                           | attribute              |
-| res                            | response, result       |
-| act                            | actual                 |
-| ex                             | exception              |
-| num                            | number                 |
-| sys                            | system                 |
-| PlaceHolder                    | placeholder            |
-| calc                           | calculation            |
-| vald                           | validation             |
-|                                |                        |
-|                                |                        |
-| fs                             | FileStream, fileStream |
-| ts                             | transactionScope       |
-| pos                            | position, positive     |
-| GetInt                         | GetLength              |
-| GetWin                         | GetWindow              |
+</details>
 
 ## Convention rules
 ### Assemblies 
-[Assemblies](https://learn.microsoft.com/en-us/dotnet/standard/assembly/)  
 ✅ DO assembly name with PascalCase.PascalCase....  
 ✅ DO assembly name with singular  
+
+[:top: Back to top](#dotnet-naming-convention)
+[Assemblies](https://learn.microsoft.com/en-us/dotnet/standard/assembly/)  
 
 #### DLL / EXE
 ✅ DO name with PascalCase.PascalCase....  
 ✅ DO name with singular  
 
 ### namespace
-[namespace](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/namespace)
 ✅ DO organize namespaces with a clearly defined structure  
 ✅ DO maintain namespace with folder names  
 ✅ DO use `.` for multiple name. eg. `WepApp.Infrastructure.Reposiotories`
@@ -240,10 +248,11 @@ namespace NamingConvention.NamingConventions {}           // PascalCase.PascalCa
 using NamingConvention.NamingConventions;
 using NamingConventions = NamingConvention.NamingConventions;
 ```
-### type
-References: 
-[Type](https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/types)
 
+[:top: Back to top](#dotnet-naming-convention)
+[namespace](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/namespace)
+
+### type
 ```cs
 public interface IInterfaceName { }                     // PascalCase with "I" prefix
 public class ClassName { }                              // PascalCase
@@ -261,9 +270,10 @@ public event DelegateType SampleEvent;                  // PascalCase
 (double Sum, int Count) t2 = (4.5, 3);                  // PascalCase
 int? optionalInt = default;                             // camelCase
 ```
+[:top: Back to top](#dotnet-naming-convention)
+[Type](https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/types)
 
 #### class
-[class](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/class)   
 ✅ Do class name with `PascalCase`  
 ✅ Do class name with `nouns` or `noun` phrases  
 ✅ DO method name with verb phrases    
@@ -283,6 +293,7 @@ int? optionalInt = default;                             // camelCase
 ❌ DO NOT use abbreviations  
 ❌ DO NOT add prefix, For example `VmCustomer`, `CommandCustomerCreate`, You type `Vm` and press the completion key and are bombarded with a mile-long list of every class in the system.  
 ❌ DO NOT use any words which is shorter than 3 chararcters & which does not add any meaning.
+
 ```cs
 public class ClassService                                 // PascalCase - class name
 {
@@ -403,8 +414,11 @@ public class ClassService                                 // PascalCase - class 
   }
 }
 ```
+
+[:top: Back to top](#dotnet-naming-convention)
+[class](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/class)   
+
 #### Struct
-[struct](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/struct)
 ```cs
 public struct Coord                         // PascalCase, Singular, No "Struct" suffix or No 'struct' or 's' postfix                                   
 {
@@ -422,8 +436,12 @@ public struct Coord                         // PascalCase, Singular, No "Struct"
 
 // follow class naming convention for struct
 ```
+
+[:top: Back to top](#dotnet-naming-convention)
+[struct](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/struct)
+
 #### enum (enumuration)
-[enum](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/enum)  
+
 ✅ DO `PascalCase` for enum name and member name  
 ✅ DO use a singular type name for an enumeration unless its values are bit fields.  
 ✅ DO use a plural type name for an enumeration with bit fields as values, also called flags enum.
@@ -450,8 +468,12 @@ enum CategoryTypes{                  // PascalCase, Plural, No "Enum" suffix
     All = Group | Single
 }
 ```
+
+[:top: Back to top](#dotnet-naming-convention)
+[enum](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/enum)  
+
 #### record
-[record](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record)
+
 ```cs
 public record Person(string FirstName, string LastName);    // PascalCase, Noun
 
@@ -463,8 +485,12 @@ public record Person
 
 // folllow naming convention like class
 ```
+
+[:top: Back to top](#dotnet-naming-convention)
+[record](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record)
+
 #### interface  
-[interface](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/interface)  
+
 ✅ Do interface name with PascalCase  
 ✅ DO prefix interface names with the letter `I`, to indicate that the type is an interface.. For example
   - `IComponent` (descriptive noun),
@@ -478,93 +504,96 @@ public record Person
   - interface `ICustomAttributeProvider`, class `CustomAttributeProvider`
   - interface `IPersistable`, class `Persistable`
 
-❌ DO NOT use abbreviations for interface name, field, properties, method etc.
-```cs
+❌ DO NOT use abbreviations for interface name, field, properties, method etc.  
 
-```
+[:top: Back to top](#dotnet-naming-convention)
+[interface](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/interface)  
 
 #### abstract
-[abstract](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/abstract)
-
-
 Generics were added to .NET Framework 2.0. The feature introduced a new kind of identifier called type parameter.
 
-- ✅  DO name generic type parameters with descriptive names unless a single-letter name is completely self-explanatory and a descriptive name would not add value.
-- ✅  CONSIDER using T as the type parameter name for types with one single-letter type parameter.
+✅  DO name generic type parameters with descriptive names unless a single-letter name is completely self-explanatory and a descriptive name would not add value.  
+✅  CONSIDER using T as the type parameter name for types with one single-letter type parameter.
 ```
 public int IComparer<T> { ... }
 public delegate bool Predicate<T>(T item);
 public struct Nullable<T> where T:struct { ... }
 ```
-- ✅  DO prefix descriptive type parameter names with T.
+✅  DO prefix descriptive type parameter names with T.
 ```
 public interface ISessionChannel<TSession> where TSession : ISession {
     TSession Session { get; }
 }
 ```
-- ✅ CONSIDER indicating constraints placed on a type parameter in the name of the parameter.
+✅ CONSIDER indicating constraints placed on a type parameter in the name of the parameter.
   For example, a parameter constrained to ISession might be called TSession.
 
-#### Names of Common Types
-- ✅ DO follow the guidelines described in the following table when naming types derived from or implementing certain .NET Framework types.
+[:top: Back to top](#dotnet-naming-convention)
+[abstract](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/abstract)
 
-- System.Attribute
-  - ✅ DO add the suffix "Attribute" to names of custom attribute classes.
-- System.Delegate
-  - ✅ DO add the suffix "EventHandler" to names of delegates that are used in events.
-  - ✅ DO add the suffix "Callback" to names of delegates other than those used as event handlers.
-  - ❌ DO NOT add the suffix "Delegate" to a delegate.
-- System.EventArgs
-  - ✅ DO add the suffix "EventArgs."  
-- System.Exception
-  - ✅ DO add the suffix "Exception."
-- `IDictionary` `IDictionary<TKey,TValue>` 
-  - ✅ DO add the suffix "Dictionary." Note that IDictionary is a specific type of collection, but this guideline takes precedence over the more general collections guideline that follows.
-- IEnumerable, ICollection, IList, IEnumerable<T>, ICollection<T>, IList<T>
-  - ✅ DO add the suffix "Collection."
-- System.IO.Stream
-  -	✅ DO add the suffix "Stream."
-- CodeAccessPermission IPermission	
-  - ✅ DO add the suffix "Permission."
+
+#### Other Types (most common other type)
+✅ DO follow the guidelines described in the following table when naming types derived from or implementing certain .NET Framework types.
+
+- System.Attribute  
+  ✅ DO add the suffix "Attribute" to names of custom attribute classes.
+- System.Delegate  
+  ✅ DO add the suffix "EventHandler" to names of delegates that are used in events.  
+  ✅ DO add the suffix "Callback" to names of delegates other than those used as event handlers.  
+  ❌ DO NOT add the suffix "Delegate" to a delegate.
+- System.EventArgs  
+  ✅ DO add the suffix "EventArgs."    
+- System.Exception  
+  ✅ DO add the suffix "Exception."  
+- `IDictionary` `IDictionary<TKey,TValue>`   
+  ✅ DO add the suffix "Dictionary." Note that IDictionary is a specific type of collection, but this guideline takes precedence over the more general collections guideline that follows.  
+- IEnumerable, ICollection, IList, IEnumerable<T>, ICollection<T>, IList<T>  
+  ✅ DO add the suffix "Collection."  
+- System.IO.Stream  
+  -	✅ DO add the suffix "Stream."  
+- CodeAccessPermission IPermission	  
+  ✅ DO add the suffix "Permission."  
+
+[:top: Back to top](#dotnet-naming-convention)
 
 ### Names of Type Members
-- ✅ DO declare all member variables at the top of a class, with static variables at the very top.
-- ✅ DO use predefined type names instead of system type names like Int16, Single, UInt64, etc
+✅ DO declare all member variables at the top of a class, with static variables at the very top.  
+✅ DO use predefined type names instead of system type names like Int16, Single, UInt64, etc
  
 #### Methods
-- ✅ DO give methods names that are verbs or verb phrases, because methods are the means of taking action
+✅ DO give methods names that are verbs or verb phrases, because methods are the means of taking action
  
 #### Properties
-- ✅ DO name properties using a noun, noun phrase, or adjective, because a property refers to data, and the name of the property reflects that.
-- ✅ DO name collection properties with a plural phrase. For example
-  - `public List<Customer> Customers { get; set; }`
-- ✅ DO name Boolean properties with an affirmative phrase (CanSeek instead of CantSeek). Optionally, you can also prefix Boolean properties with "Is", "Can", or "Has", but only where it adds value.
-- ✅ CONSIDER giving a property the same name as its type. For example, the following property correctly gets and sets an enum value named Color, so the property is named Color:
+✅ DO name properties using a noun, noun phrase, or adjective, because a property refers to data, and the name of the property reflects that.  
+✅ DO name collection properties with a plural phrase. For example  
+  - `public List<Customer> Customers { get; set; }`  
+✅ DO name Boolean properties with an affirmative phrase (CanSeek instead of CantSeek). Optionally, you can also prefix Boolean properties with "Is", "Can", or "Has", but only where it adds value.  
+✅ CONSIDER giving a property the same name as its type. For example, the following property correctly gets and sets an enum value named Color, so the property is named Color:  
 
-- ❌ DO NOT have properties that match the name of "Get" methods as in the following example:  
-`public string TextWriter { get {...} set {...} }` `public string GetTextWriter(int value) { ... }`
-- ❌ DO NOT name collection properties with using a singular phrase followed by "List" or "Collection". For example
+❌ DO NOT have properties that match the name of "Get" methods as in the following example:   
+`public string TextWriter { get {...} set {...} }` `public string GetTextWriter(int value) { ... }`  
+❌ DO NOT name collection properties with using a singular phrase followed by "List" or "Collection". For example  
   - `CustomerList`
   - 
 #### Events
-- ✅ DO name events with a verb or a verb phrase.
-  Examples include Clicked, Painting, DroppedDown, and so on.
-- ✅ DO give events names with a concept of before and after, using the present and past tenses.
-  For example, a close event that is raised before a window is closed would be called Closing, and one that is raised after the window is closed would be called Closed.
-- ✅ DO name event handlers (delegates used as types of events) with the "EventHandler" suffix, as shown in the following example:
-  public delegate void ClickedEventHandler(object sender, ClickedEventArgs e);
-- ✅ DO use two parameters named sender and e in event handlers.
-  The sender parameter represents the object that raised the event. The sender parameter is typically of type object, even if it is possible to employ a more specific type.
-- ✅ DO name event argument classes with the "EventArgs" suffix.
+✅ DO name events with a verb or a verb phrase.  
+  Examples include Clicked, Painting, DroppedDown, and so on.  
+✅ DO give events names with a concept of before and after, using the present and past tenses.  
+  For example, a close event that is raised before a window is closed would be called Closing, and one that is raised after the window is closed would be called Closed.  
+✅ DO name event handlers (delegates used as types of events) with the "EventHandler" suffix, as shown in the following example:
+  public delegate void ClickedEventHandler(object sender, ClickedEventArgs e);  
+✅ DO use two parameters named sender and e in event handlers.
+  The sender parameter represents the object that raised the event. The sender parameter is typically of type object, even if it is possible to employ a more specific type.  
+✅ DO name event argument classes with the "EventArgs" suffix.
   
 #### Fields
-The field-naming guidelines apply to static public and protected fields. Internal and private fields are not covered by guidelines, and public or protected instance fields are not allowed by the member design guidelines.
-- ✅ DO use PascalCasing in field names.
-- ✅ DO name fields using a noun, noun phrase, or adjective.
+The field-naming guidelines apply to static public and protected fields. Internal and private fields are not covered by guidelines, and public or protected instance fields are not allowed by the member design guidelines.  
+✅ DO use PascalCasing in field names.  
+✅ DO name fields using a noun, noun phrase, or adjective.  
   
-- ❌ DO NOT use a prefix for field names.
-- ❌ DO NOT use "Before" or "After" prefixes or postfixes to indicate pre- and post-events. Use present and past tenses as just described.
-  For example, do not use "g_" or "s_" to indicate static fields.
+❌ DO NOT use a prefix for field names.  
+❌ DO NOT use "Before" or "After" prefixes or postfixes to indicate pre- and post-events. Use present and past tenses as just described.  
+  For example, do not use "g_" or "s_" to indicate static fields.  
 #### Generic
 ```cs
 // generic
@@ -585,11 +614,14 @@ public interface ISessionChannel<TSession>
 #### Nullable types
 #### Tuples
 
+[:top: Back to top](#dotnet-naming-convention)
+
 ### DbContext
-✅ DO use plural name for entity/table name
-✅ DO use "DbContext" suffix for your DbContext
-```
-```
+✅ DO use plural name for entity/table name.  
+✅ DO use "DbContext" suffix for your DbContext.  
+
+[:top: Back to top](#dotnet-naming-convention)
+
 ### More suffix
 
 | Type                 | Suffix                    | Example                     | Tools                                 |
@@ -608,10 +640,13 @@ public interface ISessionChannel<TSession>
 | Response             |                           |                             |                                       |
 | View model           | `Vm`                      | OrderVm                     |                                       |
 
+[:top: Back to top](#dotnet-naming-convention)
+
 ### LINQ
-✅ DO use abbreviation for lamda expressioin varaible 
+✅ DO use abbreviation for lamda expressioin varaible  
  - `persons.Where(p => p.IsActive)`
  - `postReviewers.FirstOrDefaultAsync(pr => pr.Id == reviewerId)`
+  
  ```
 Func<int, int> square = x => x * x;
 var squaredNumbers = numbers.Select(x => x * x);
@@ -633,6 +668,7 @@ let Student { Grade is var grade, Name is var name } = p
 where grade > 65
 select new { Grade = grade, Name = name };
 ```
+[:top: Back to top](#dotnet-naming-convention)
 [](https://learn.microsoft.com/en-us/dotnet/csharp/linq/)
 [](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions)
 
@@ -671,45 +707,64 @@ public class OrderStateMachine : MassTransitStateMachine<OrderState> {}     // S
 public class TakeProductActivity : Activity<OrderState, OrderAcceptedEvent> {}  // Activity - PascalCase, verb-noun, "Activity" postfix
 public class OrderStateDefinition : SagaDefinition<OrderState> {}           // Saga State defination - PascalCase, verb "StateDenition" postfix
 ```
+
+[:top: Back to top](#dotnet-naming-convention)
+
 ### Unit Test
-- Test name should express a specific requirement
-- Test name Explicitly express the intent of the test
-- Test name should provide documentation
-- Test name could include the expected input or state and the expected result for that input or state
-- Avoid magic strings
-- Test name could include the name of the tested method or class
-- Test class name should be same as the sut (system under test) class with `Test` test postfix
-  - if stub class is `StringCalculator`, then your class name should be `StringCalculatorTest`
-- Test method name should be like below
-  - `TestClassName_TestMethodName_ScenarioWithExpectedResult`
-  - `TestMethodName_Scenario_ExpectedResult` - **recommended**
-  - `TestMethodName_ExpectedResult_Scenario`
-- System under test class variable name could be `private StringCalculator _sut`
-- Fake variable should prefix/postfix with `fake` 
-- Moq variable should prefix/postfix with `mock` 
-- Stub variable should prefix/postfix with `stub` 
+✅ Test name should express a specific requirement  
+✅ Test name Explicitly express the intent of the test  
+✅ Test name should provide documentation  
+✅ Test name could include the expected input or state and the expected result for that input or state  
+✅ Avoid magic strings  
+✅ Test name could include the name of the tested method or class  
+✅ Test class name should be same as the sut (system under test) class with `Test` test postfix  
+  - if stub class is `StringCalculator`, then your class name should be `StringCalculatorTest`  
+
+✅ Test method name should be like below  
+  - `TestClassName_TestMethodName_ScenarioWithExpectedResult`  
+  - `TestMethodName_Scenario_ExpectedResult` - **recommended**  
+  - `TestMethodName_ExpectedResult_Scenario`  
+  
+✅ System under test class variable name could be `sut`. eg. `private StringCalculator _sut`  
+✅ Fake variable should prefix/postfix with `fake`   
+✅ Moq variable should prefix/postfix with `mock`  
+✅ Stub variable should prefix/postfix with `stub`  
 
 [unit test best practises](https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-best-practices)
 ```cs
-[Theory]
-[InlineData("", 0)]
-[InlineData(",", 0)]
-public void Add_EmptyEntries_ShouldBeTreatedAsZero(string input, int expected)
+namespace MyApp.Core.Test
 {
-    // Arrange
-    var stringCalculator = new StringCalculator();
+  public class CalculatorTest{ 
+    
+    private readonly Calculator _sut;
 
-    // Act
-    var actual = stringCalculator.Add(input);
+    public CalculatorTest(){
+      _sut = new Calculator();
+    }
 
-    // Assert
-    Assert.Equal(expected, actual);
+    [Theory]
+    [InlineData("", 0)]
+    [InlineData(",", 0)]
+    public void Add_EmptyEntries_ShouldBeTreatedAsZero(string input, int expected)
+    {
+        // Arrange
+        
+
+        // Act
+        var actual = _sut.Add(input);
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+  }
 }
 ```
 
+[:top: Back to top](#dotnet-naming-convention)
 
+## Resources
 <details>
-  <summary>Resources</summary>
+  <summary>Thanks to</summary>
 
 - microsoft
   - [dotnet Framework old Guidelines - microsoft***](https://learn.microsoft.com/en-us/previous-versions/dotnet/netframework-1.1/xzf533w0(v=vs.71)?redirectedfrom=MSDN) 
