@@ -32,6 +32,7 @@
     - [LINQ](#linq)
     - [Message Broker](#message-broker)
     - [Unit Test](#unit-test)
+  - [Tools](#tools)
   - [Resources](#resources)
 </details>
 
@@ -535,21 +536,21 @@ public interface ISessionChannel<TSession> where TSession : ISession {
 #### Other Types (most common other type)
 ✅ DO follow the guidelines described in the following table when naming types derived from or implementing certain .NET Framework types.
 
-- System.Attribute  
+- **System.Attribute**  
   ✅ DO add the suffix "Attribute" to names of custom attribute classes.
-- System.Delegate  
+- **System.Delegate**  
   ✅ DO add the suffix "EventHandler" to names of delegates that are used in events.  
   ✅ DO add the suffix "Callback" to names of delegates other than those used as event handlers.  
   ❌ DO NOT add the suffix "Delegate" to a delegate.
-- System.EventArgs  
+- **System.EventArgs**  
   ✅ DO add the suffix "EventArgs."    
-- System.Exception  
+- **System.Exception**  
   ✅ DO add the suffix "Exception."  
 - `IDictionary` `IDictionary<TKey,TValue>`   
   ✅ DO add the suffix "Dictionary." Note that IDictionary is a specific type of collection, but this guideline takes precedence over the more general collections guideline that follows.  
-- IEnumerable, ICollection, IList, IEnumerable<T>, ICollection<T>, IList<T>  
+- **IEnumerable, ICollection, IList, IEnumerable<T>, ICollection<T>, IList<T>**  
   ✅ DO add the suffix "Collection."  
-- System.IO.Stream  
+- **System.IO.Stream**  
   -	✅ DO add the suffix "Stream."  
 - CodeAccessPermission IPermission	  
   ✅ DO add the suffix "Permission."  
@@ -565,8 +566,9 @@ public interface ISessionChannel<TSession> where TSession : ISession {
  
 #### Properties
 ✅ DO name properties using a noun, noun phrase, or adjective, because a property refers to data, and the name of the property reflects that.  
-✅ DO name collection properties with a plural phrase. For example  
+✅ DO name collection properties with a plural phrase. For example
   - `public List<Customer> Customers { get; set; }`  
+  
 ✅ DO name Boolean properties with an affirmative phrase (CanSeek instead of CantSeek). Optionally, you can also prefix Boolean properties with "Is", "Can", or "Has", but only where it adds value.  
 ✅ CONSIDER giving a property the same name as its type. For example, the following property correctly gets and sets an enum value named Color, so the property is named Color:  
 
@@ -574,7 +576,7 @@ public interface ISessionChannel<TSession> where TSession : ISession {
 `public string TextWriter { get {...} set {...} }` `public string GetTextWriter(int value) { ... }`  
 ❌ DO NOT name collection properties with using a singular phrase followed by "List" or "Collection". For example  
   - `CustomerList`
-  - 
+  
 #### Events
 ✅ DO name events with a verb or a verb phrase.  
   Examples include Clicked, Painting, DroppedDown, and so on.  
@@ -617,8 +619,18 @@ public interface ISessionChannel<TSession>
 [:top: Back to top](#dotnet-naming-convention)
 
 ### DbContext
-✅ DO use plural name for entity/table name.  
-✅ DO use "DbContext" suffix for your DbContext.  
+✅ DO use PascalCase for entity name, properties name.  
+✅ DO use plural name for table name.  
+✅ DO use "DbContext" suffix for your DbContext. 
+
+```cs
+public class OrderDbContext : DbContext
+{
+    ...
+    public DbSet<Order> Orders { get; set; }
+    public DbSet<OrderItem> OrderItems { get; set; }
+}
+```
 
 [:top: Back to top](#dotnet-naming-convention)
 
@@ -760,6 +772,17 @@ namespace MyApp.Core.Test
 }
 ```
 
+[:top: Back to top](#dotnet-naming-convention)
+
+## Tools
+- Visual studio with [editorconfig](https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/naming-rules)
+- Resharper
+- [code analysis](https://github.com/dotnet/code-analysis)
+- [StyleCop](https://github.com/DotNetAnalyzers/StyleCopAnalyzers)
+- [roslynator](https://github.com/dotnet/roslynator)
+- [xunit.analyzers](https://github.com/xunit/xunit.analyzers)
+- [Sonarlint](https://github.com/SonarSource/sonar-dotnet)
+  
 [:top: Back to top](#dotnet-naming-convention)
 
 ## Resources
