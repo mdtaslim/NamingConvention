@@ -4,7 +4,9 @@
   <summary>Table of Content</summary>
 
 - [Dotnet Naming Convention](#dotnet-naming-convention)
-- [Why naming convention](#why-naming-convention)
+- [What is naming convention](#what-is-naming-convention)
+- [Why naming convention important](#why-naming-convention-important)
+- [Naming convention guideline](#naming-convention-guideline)
   - [Choose your words](#choose-your-words)
   - [Choose your Case](#choose-your-case)
   - [Convention rules](#convention-rules)
@@ -36,13 +38,48 @@
   - [Resources](#resources)
 </details>
 
-**Note**: this guideline is only for naming convention. No code quality rules (except naming conventions) are added in this guideline.
+# What is naming convention
+A naming convention is a convention for naming thing. In computer programming, a naming convention is a set of rules for choosing the character sequence to be used for identifiers which denote variables, types, functions, and other entities in source code and documentation.
 
-# Why naming convention
-**Improved Communication** — “The best code communicates itself” . Any member of a development will be able to read and understand the code of another member through code.  
-**Improved Code integration** — Distinct teams that rely on the code built by other teams won’t have problem understanding properly named interface and its entities.  
-**Improved Consistency** — Helps formalize expectations and promote consistency within a development team.  
-**Improved clarity** — Provides better understanding in case of code reuse after a long interval of time. Enhances clarity in cases of potential ambiguity.  
+
+# Why naming convention important
+In software development, consistency is a fundamental principle that affects code quality, collaboration, and project success. Inconsistent naming conventions are a common issue. Developers may inadvertently mix different naming styles & leading to confusion and complications. So, let's now see how the naming convention affects an application.
+
+- **Code Comprehension**:  
+	Inconsistent naming conventions make it difficult for developers to extract information and lead to confusion in understanding aspects of a system..  So if naming convention maintained
+	- It Improves clarity in case of ambiguity
+	- It improve Findability/Searchability/Readability/Transparency
+	- It helps formalize expectations and promote consistency within a development team.
+	- It provides better understanding in case of code reuse after a long interval of time.
+	
+- **Code Maintenance:**  
+	Inconsistent naming conventions can lead to maintenance terrible. Working on large application some developers unknowingly introduce new naming conventions, making it difficult to ensure consistency. It costs time and money, and can lead to nasty bugs. So mainginting naming convention
+	- It reduce the effort needed to read and understand source code.
+	- It let the programmer focus on more important issues than syntax and naming standards.
+	- It reduce bugs, or easily fixable.
+	
+- **Collaboration:**  
+	Create inconsitency when different people uses different naming conventions and lead to conflicts and hinder effective collaboration. You have to be able to communicate about problems, solutions and results. Without following a naming convention how do you tell someone else what to do, how to help, or even what it is that is a problem?
+	- `The best code communicates itself` . Any member of a development will be able to read and understand the code of another member through code.
+	- It facilitate and let programmers share their code with each other without losing focus on formatting.
+	- It help programmers to formalize and standardize their work as a team
+	
+- **Project Quality:**  
+	Consistency in naming conventions is a crucial aspect of code quality. A project with consistent and well-maintained code is easier to maintain, debug, and extend.
+	- It helps improve quality & developers productivity
+
+- **Transfer knowledge:**  
+	It's hard for someone to read or understand another member's code, even harder if he leaves. When a member join from different stack or not, if he just follow & see how naming is done in whole project, he will grasp without blindly following along and can discuss constructively. 
+	- It improves understanding for everybody & allows transferring the project to another team with reduced costs
+	- Onboarding new team members is faster
+	— Distinct teams that rely on the code built by other teams won’t have problem understanding properly named interface and its entities.
+	
+# Naming convention guideline
+This guideline will provide a consistent set of naming conventions that results in names that make immediate sense to developers.  
+
+**note:** this guideline is only for naming convention. No code quality rules (except naming conventions) are added in this guideline.
+
+
 
 ## Choose your words
 ✅ Do use word (descriptive names) which have to reveal your intention  
@@ -148,9 +185,9 @@ This will assist discovery when browsing documentation, or using IntelliSense. T
 | Struct                            | PascalCase  |        |        | Noun            |                                          |
 | Record                            | PascalCase  |        |        | Noun            |                                          |
 | Interface                         | IPascalCase |        |        | Noun            | IEnumerable                              |
-| Enum                              |             |        |        | Noun            | public enum FileMode {}                  |
+| Enum                              | PascalCase  |        |        | Noun            | public enum FileMode {}                  |
 | Enum (Flags)                      | PascalCase  |        | ✅     | Noun            | [Flags] public enum FileTypes {}         |
-| Event                             |             |        |        | Noun            | public event EventHandler Exited;        |
+| Event                             | PascalCase  |        |        | Noun            | public event EventHandler Exited;        |
 | Delegate                          | PascalCase  |        |        | Noun            |                                          |
 | const - local                     | PascalCase  |        |        | Noun, Adjective |                                          |
 | const - global                    | PascalCase  |        |        | Noun, Adjective |                                          |
@@ -165,14 +202,8 @@ This will assist discovery when browsing documentation, or using IntelliSense. T
 | Field - protected  readonly       | PascalCase  |        |        | Noun, Adjective |                                          |
 | Field List, Collection etc        | PascalCase  |        | ✅     | Noun, Adjective | public List<string> Customers { get; }   |
 | Property                          |             |        |        | Noun, Adjective |                                          |
-| Property                          |             |        |        | Noun, Adjective |                                          |
-| Property                          |             |        |        | Noun, Adjective |                                          |
-| Property                          |             |        |        | Noun, Adjective |                                          |
-| Property                          |             |        |        | Noun, Adjective |                                          |
-| Property                          |             |        |        | Noun, Adjective |                                          |
-| Property                          |             |        |        | Noun, Adjective |                                          |
-| Property - public virtual         |             |        |        | Noun, Adjective |                                          |
-| Property - public static readonly |             |        |        | Noun, Adjective |                                          |
+| Property - public virtual         | PascalCase  |        |        | Noun, Adjective |                                          |
+| Property - public static readonly | PascalCase  |        |        | Noun, Adjective |                                          |
 | Method                            | PascalCase  |        | ✅     | verb            | public virtual string ToString();        |
 | Method - constructor              | PascalCase  |        |        | Noun            |                                          |
 | Method - private                  | PascalCase  |        |        | Noun            |                                          |
@@ -321,9 +352,9 @@ public class ClassService                                 // PascalCase - class 
 
   // field with interface
   public IInterfaceName InterfaceName;                        // public field - PascalCase
-  protected IInterfaceName InterfaceName1;                    // protected field - PascalCase
+  protected IInterfaceName ProtectedInterfaceName;            // protected field - PascalCase
   private IInterfaceName _interfaceName;                      // private instant field - _camelCase  with ( _ )
-  internal IInterfaceName _interfaceName1;                    // internal field - _camelCase  with ( _ )
+  internal IInterfaceName _internalInterfaceName;             // internal field - _camelCase  with ( _ )
 
 
   // field with access modifier
@@ -336,20 +367,20 @@ public class ClassService                                 // PascalCase - class 
   // field with readonly access modifier
   private readonly string _readonlyPrivate;
   private readonly int _value;
-  public readonly IInterfaceName InterfaceName21;
-  public static readonly IInterfaceName InterfaceName22;
-  protected readonly IInterfaceName InterfaceName23;
-  protected static readonly IInterfaceName InterfaceName24;
+  public readonly IInterfaceName PublicReadonlyInterfaceName;
+  public static readonly IInterfaceName PublicReadonlyInterfaceName;
+  protected readonly IInterfaceName ProtectedReadonlyInterfaceName;
+  protected static readonly IInterfaceName ProtectedStaticReadonlyInterfaceName;
 
   // field with static
-  private static IInterfaceName s_workerQueue;                // private static field - s_camelCase  with s_ prefix
-  private static readonly IInterfaceName s_workerQueue1;      // private  readonly static field - s_camelCase & static should come before readonly 
-  internal static IInterfaceName s_workerQueue2;              // internal static field - s_camelCase  with s_ prefix
+  private static IInterfaceName s_privateStaticInterfaceName;                 // private static field - s_camelCase  with s_ prefix
+  private static readonly IInterfaceName s_privateReadonlyStaticInterfaceName;// private  readonly static field - s_camelCase & static should come before readonly 
+  internal static IInterfaceName s_internalStaticInterfaceName;               // internal static field - s_camelCase  with s_ prefix
 
   [ThreadStatic]
-  private static TimeSpan t_timeSpan;                         // private thread static field - t_camelCase  with t_ prefix
+  private static TimeSpan t_privateStaticTimeSpan;                            // private thread static field - t_camelCase  with t_ prefix
   [ThreadStatic]
-  internal static TimeSpan t_timeSpan1;                       // internal thread static field - t_camelCase  with t_ prefix
+  internal static TimeSpan t_internalStaticTimeSpan;                          // internal thread static field - t_camelCase  with t_ prefix
 
   // delegate
   public delegate void SampleEventHandler(object sender, SampleEventArgs e);
@@ -421,9 +452,9 @@ public class ClassService                                 // PascalCase - class 
 
 #### Struct
 ```cs
-public struct Coord                         // PascalCase, Singular, No "Struct" suffix or No 'struct' or 's' postfix                                   
+public struct Coord                                                 // PascalCase, Singular, No "Struct" suffix or No 'struct' or 's' postfix                                   
 {
-    public Coord(double width, double height)   // PascalCase - Constructor , camelCase - argument 
+    public Coord(double width, double height)                       // PascalCase - Constructor , camelCase - argument 
     {
         Width = width;
         Height = height;
@@ -659,7 +690,7 @@ public class OrderDbContext : DbContext
  - `persons.Where(p => p.IsActive)`
  - `postReviewers.FirstOrDefaultAsync(pr => pr.Id == reviewerId)`
   
- ```
+ ```cs
 Func<int, int> square = x => x * x;
 var squaredNumbers = numbers.Select(x => x * x);
 Func<int, int, bool> testForEquality = (x, y) => x == y;
@@ -674,11 +705,22 @@ var IncrementBy = (int source, int increment = 1) => source + increment;
 };
  ```
 ✅ DO use abbreviation for query expression variable
-```
-from p in persons
-let Student { Grade is var grade, Name is var name } = p
-where grade > 65
-select new { Grade = grade, Name = name };
+```cs
+var persons = from p in persons
+    let Student { Grade is var grade, Name is var name } = p
+    where grade > 65
+    select new { Grade = grade, Name = name };
+
+var orderInformation = await _dbContext.Orders
+    .Include(o => o.OrderItems).ThenInclude(oi => oi.Products)
+    .Select(o => new OrderInformationVm{
+        OrderNumber = o.OrderNumber,
+        OrderItems = o.OrderItems.Select(oi => new OrderItemInformationVm{
+            OrderId = oi.OrderId,
+            ProductName = oi.Product.Name,
+            Sku = oi.Product.Sku
+        }).ToList()
+    }).FirstOrDefaultAsync(o => o.OrderNumber = orderNumber);
 ```
 [:top: Back to top](#dotnet-naming-convention)
 [](https://learn.microsoft.com/en-us/dotnet/csharp/linq/)
@@ -747,26 +789,31 @@ public class OrderStateDefinition : SagaDefinition<OrderState> {}           // S
 namespace MyApp.Core.Test
 {
   public class CalculatorTest{ 
-    
-    private readonly Calculator _sut;
-
-    public CalculatorTest(){
-      _sut = new Calculator();
-    }
-
     [Theory]
     [InlineData("", 0)]
     [InlineData(",", 0)]
     public void Add_EmptyEntries_ShouldBeTreatedAsZero(string input, int expected)
     {
-        // Arrange
-        
+        // arrange
+        var _sut = new Calculator();
 
-        // Act
+        // act
         var actual = _sut.Add(input);
 
-        // Assert
+        // assert
         Assert.Equal(expected, actual);
+    }
+
+    [Theory]
+    [InlineData(-1)]
+    [InlineData(0)]
+    [InlineData(1)]
+    public void IsPrime_ValuesLessThan2_ReturnFalse(int value)
+    {
+        var _sut = new Calculator();
+        var result = _sut.IsPrime(value);
+
+        Assert.False(result, $"{value} should not be prime");
     }
   }
 }

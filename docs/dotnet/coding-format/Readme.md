@@ -1,19 +1,20 @@
 # Dotnet Code format
 ✅ DO format your code and must follow same pattern for a single team.  
-✅ DO use indentation  
-✅ DO use tab for indentation  
-
 ✅ DO use format before save your file.  
-✅ DO use empty new line before your return block.  
+✅ DO use indentation  
+✅ DO use tab for indentation   
+
+✅ DO use empty new line after every method.  
+✅ DO use empty new line before your return block.   
+✅ DO set your private method above of all public method. (also can add a seperate region)  
 ✅ DO use format tool. eg. Visual Studio formatter, dotnet formatter  
 ✅ DO use max 80/120 character length for your line margin.  
 ✅ DO use break your code whenever your line margin exceeds.  
 ✅ DO use break your code properly, not partially.  
 
-
 ❌ DO not use extra whitespace.  
 ❌ DO not use multiple empty line in your code.  
-❌ DO not break your code in any place
+❌ DO not break your code in any place  
 ❌ DO not use alignment without tab indentation  
 
 ```cs
