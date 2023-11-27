@@ -27,9 +27,6 @@
       - [Events](#events)
       - [Fields](#fields)
       - [Generic](#generic)
-      - [Nullable types](#nullable-types)
-      - [Tuples](#tuples)
-    - [DbContext](#dbcontext)
     - [More suffix](#more-suffix)
     - [LINQ](#linq)
     - [Message Broker](#message-broker)
@@ -43,7 +40,10 @@ A naming convention is a convention for naming thing. In computer programming, a
 
 
 # Why naming convention important
-In software development, consistency is a fundamental principle that affects code quality, collaboration, and project success. Inconsistent naming conventions are a common issue. Developers may inadvertently mix different naming styles & leading to confusion and complications. So, let's now see how the naming convention affects an application.
+In software development, consistency is a fundamental principle that affects code quality, collaboration, and project success. Inconsistent naming conventions are a common issue. Developers may inadvertently mix different naming styles & leading to confusion and complications. 
+
+<details>
+  <summary>So, let's now see how the naming convention affects an application.</summary>
 
 - **Code Comprehension**:  
 	Inconsistent naming conventions make it difficult for developers to extract information and lead to confusion in understanding aspects of a system..  So if naming convention maintained
@@ -74,6 +74,9 @@ In software development, consistency is a fundamental principle that affects cod
 	- Onboarding new team members is faster
 	— Distinct teams that rely on the code built by other teams won’t have problem understanding properly named interface and its entities.
 	
+</details>
+
+
 # Naming convention guideline
 This guideline will provide a consistent set of naming conventions that results in names that make immediate sense to developers.  
 
@@ -105,13 +108,12 @@ This guideline will provide a consistent set of naming conventions that results 
 <details open="open">
   <summary>Word Type</summary>
 
-| Word Type | Resource                                                               |
-| --------- | ---------------------------------------------------------------------- |
-| Nown      | Type - (class, enum, struct, record), delegate, event, field, property |
-| Verb      | method                                                                 |
-|           |                                                                        |
-| Adjective | local variable                                                         |
-|           |                                                                        |
+| Word Type        | Resource                                                                                                  |
+| ---------------- | --------------------------------------------------------------------------------------------------------- |
+| Noun/Noun phrase | Type - (class, enum, struct, record), delegate, field, property, abstract class, interface (occassionaly) |
+| Verb             | method, event (with tense)                                                                                |
+| Adjective        | local variable, interface, property                                                                       |
+|                  |                                                                                                           |
 </details>
 
 <details open="open">
@@ -216,13 +218,12 @@ This will assist discovery when browsing documentation, or using IntelliSense. T
 <details open="open">
   <summary>Case Type</summary>
 
-| Case Type       | Resource                                                                       |
-| --------------- | ------------------------------------------------------------------------------ |
-| PascalCase      | Type - (class, enum, struct, record), delegate, event, field, property, method |
-| IPascalCase     | interface                                                                      |
-|                 |                                                                                |
-| CamelCase class | method parameter, local variable                                               |
-| _CamelCase      | property (private, private readonly)                                           |
+| Case Type   | Resource                                                                                                         |
+| ----------- | ---------------------------------------------------------------------------------------------------------------- |
+| PascalCase  | Type - (class, enum, struct, record), const (fields & local constants), delegate, event, field, property, method |
+| IPascalCase | interface                                                                                                        |
+| CamelCase   | arguments, local variables, and private fields                                                                   |
+| _CamelCase  | property (private, private readonly)                                                                             |
 </details>
 
 <details open="open">
@@ -327,123 +328,248 @@ int? optionalInt = default;                             // camelCase
 ❌ DO NOT use any words which is shorter than 3 chararcters & which does not add any meaning.
 
 ```cs
-public class ClassService                                 // PascalCase - class name
+// simple class
+public class Product
 {
-  // constant - PascalCase
-  public const string Format = "MD";                          // constant - PascalCase            
+  public long Id { get; set; }
+ 
+  private string _sku;
+  public string Sku
+  {
+      get { return _sku; }
+      set { _sku = value; }
+  }
+ 
+  public string Name { get; set; }
+  public string Description { get; set; }
+  public char Label { get; set; }                             // PascalCase - char Property
+  public byte Picture { get; set; }                           // PascalCase - byte Property
+  public dynamic Company { get; set; }                        // PascalCase - dynamic Property
+  public int CategoryId { get; set; }
 
-  // property - PascalCase
-  public char CategoryType { get; set; }                      // PascalCase - char Property
-  public string Firstname { get; set; }                       // PascalCase - string Property
-  public bool IsJoined { get; set; }                          // PascalCase - bool Property
-  public short JoinDay { get; set; }                          // PascalCase - short Property
-  public int JoinMonth { get; set; }                          // PascalCase - int Property
-  public long JoinYear { get; set; }                          // PascalCase - long Property
-  public double PreviousAmount { get; set; }                  // PascalCase - double Property
-  public float NewAmount { get; set; }                        // PascalCase - float Property
-  public decimal ExpectedAmount { get; set; }                 // PascalCase - decimal Property
-  public DateTime JoinDateTime { get; set; }                  // PascalCase - DateTime Property
-  public TimeSpan JoinTime { get; set; }                      // PascalCase - TimeSpan Property
-  public DateTimeOffset EffectiveDate { get; set; }           // PascalCase - DateTimeOffset Property
-  public byte AvatarImage { get; set; }                       // PascalCase - byte Property
-  public dynamic Address { get; set; }                        // PascalCase - dynamic Property
-  public IInterfaceName InterfaceNameInit { get; init; }      // PascalCase - init-only property interface  
-
-
-  // field with interface
-  public IInterfaceName InterfaceName;                        // public field - PascalCase
-  protected IInterfaceName ProtectedInterfaceName;            // protected field - PascalCase
-  private IInterfaceName _interfaceName;                      // private instant field - _camelCase  with ( _ )
-  internal IInterfaceName _internalInterfaceName;             // internal field - _camelCase  with ( _ )
-
-
-  // field with access modifier
-  private string _privateField;                               // camelCase with underscore (_) prefix - private field 
-  private int _count;                                         // camelCase with underscore (_) prefix - private field 
-  protected string ProtectedField;                            // PascalCase - protected field
-  public string PublicField;                                  // PascalCase - public field
-  public bool IsValid;                                        // PascalCase - public field
   
-  // field with readonly access modifier
-  private readonly string _readonlyPrivate;
-  private readonly int _value;
-  public readonly IInterfaceName PublicReadonlyInterfaceName;
-  public static readonly IInterfaceName PublicReadonlyInterfaceName;
-  protected readonly IInterfaceName ProtectedReadonlyInterfaceName;
-  protected static readonly IInterfaceName ProtectedStaticReadonlyInterfaceName;
 
-  // field with static
-  private static IInterfaceName s_privateStaticInterfaceName;                 // private static field - s_camelCase  with s_ prefix
-  private static readonly IInterfaceName s_privateReadonlyStaticInterfaceName;// private  readonly static field - s_camelCase & static should come before readonly 
-  internal static IInterfaceName s_internalStaticInterfaceName;               // internal static field - s_camelCase  with s_ prefix
+  public short Quantity { get; set; }  
+  public decimal UnitPrice { get; set; }
+  public double Unit { get; set; }
+  public float Price { get; set; }
+  public bool IsActive { get; set; }
 
-  [ThreadStatic]
-  private static TimeSpan t_privateStaticTimeSpan;                            // private thread static field - t_camelCase  with t_ prefix
-  [ThreadStatic]
-  internal static TimeSpan t_internalStaticTimeSpan;                          // internal thread static field - t_camelCase  with t_ prefix
+  public TimeSpan EntryTime { get; set; }                       // PascalCase - TimeSpan Property
+  public DateTimeOffset EffectiveDate { get; set; }             // PascalCase - DateTimeOffset Property
+  public DateTime CreateDateUtc { get; set; }
+  
+  public IBrand Brand { get; init; }                            // PascalCase - init-only property interface  
+  public ProductType ProductType { get; set; }
+  public ProductVersion ProductVersion { get; set; }
+  public List<ProductVariant> ProductVariants { get; set; }
+}
 
-  // delegate
-  public delegate void SampleEventHandler(object sender, SampleEventArgs e);
+// dummy class with methods and properties
+public class OrderService                                       // PascalCase - class name
+{
+    // const - PascalCase
+    public const string OrderDateFormat = "DD MM YYYY";         // constant - PascalCase 
 
-  // event
-  public event SampleEventHandler SampleEvent;                // PascalCase - event 
-  public event Action EventProcessing;                        // PascalCase - event 
+    // field 
+    protected string ProtectedField;                            // PascalCase - protected field
+    public string PublicField;                                  // PascalCase - public field
+    public string _privateField;                                // PascalCase - public field
+    
 
-  // constructor
-  public ClassService(IInterfaceName interfaceName)     // parameter name - camelCase
-  {
-      InterfaceName = interfaceName;
-      _interfaceName = interfaceName;
-  }
+    // private - _camelCase
+    int _defaultValue = 1;
+    private string _type = "P";
+    private readonly string _name = "Mohammad";
+    private readonly double _price = 100.0;
+    private string _privateField;                               // camelCase with underscore (_) prefix - private field 
+    private readonly ILogger _logger;
+    private readonly IOrderRepository _orderRepository;
+    private readonly IOrderItemRepository _orderItemRepository;
+    private static readonly IOrderNoteRepository _orderNoteRepository;
 
-  // method
-  public string StartProcess()                          // method name - PascalCase
-  {
-      return string.Empty;
-  }
+    // protected - PascalCase
+    protected int CustomerType = "C" ;
+    protected readonly IHtmlFormatter HtmlFormatter;
+    protected readonly IProductRepository ProductRepository;
+    protected readonly IProductWarehouseInventoryRepository ProductWarehouseInventoryRepository;
+    
+    // public - PascalCase
+    public IProductService ProductService;
+    public readonly IShipmentService ShipmentService;
 
-  public async Task<string> StartProcessAsync()         // async method name - PascalCase with Async postfix
-  {
-      return await Task.FromResult(string.Empty);
-  }
+    // internal - PascalCase
+    internal int ProductType = "G";
+    internal static int intM = 0;  
+    protected readonly IRecurringPaymentRepository RecurringPaymentRepository;
+    protected readonly IAddressRepository AddressRepository;
+    protected readonly ICustomerRepository CustomerRepository;
 
-  // method with parameter
-  public string Add(string firstname,
-      string lastname,
-      DateTime? joinDate,
-      bool isValid)                                       // method parameter name - camelCase
-  {
-      bool addedPerson = true;                            // local variable - camelCase
-      const int OnePerson = 1;                            // local const - PascalCase
+    // static - PascalCase    
+    private static IInterfaceName _privateStaticInterfaceName;                 // private static field - _camelCase
+    private static readonly IInterfaceName _privateReadonlyStaticInterfaceName;// private  readonly static field - _camelCase & static should come before readonly 
+    internal static IInterfaceName InternalStaticInterfaceName;               // internal static field - _camelCase
 
-      var person = new Person();                          // use var when the type is explicitly named on the right-hand side
-      
-      var process = StartProcess();                       // don't use var when the type is explicitly named on the right-hand side, rather use string process = StartProcess()
+    [ThreadStatic]
+    private static TimeSpan t_privateStaticTimeSpan;                            // private thread static field - t_camelCase  with t_ prefix
+    [ThreadStatic]
+    internal static TimeSpan t_internalStaticTimeSpan;                          // internal thread static field - t_camelCase  with t_ prefix
 
-      string process1 = StartProcess();
-      Person person1 = new();
+    // delegate
+    public delegate void SampleEventHandler(object sender, SampleEventArgs e);
 
-      return string.Empty;
-  }
+    // event
+    public event SampleEventHandler SampleEvent;                // PascalCase - event 
+    public event Action EventProcessing;                        // PascalCase - event 
 
-  // method with parameter overloading
-  public string Add(string firstname,
-      string lastname,
-      DateTime? joinDate,
-      bool isValid)                                       // method parameter name - camelCase
-  {
-      bool addedPerson = true;                            // local variable - camelCase
-      const int OnePerson = 1;                            // local const - PascalCase
+    // interface
+    public IProductVarinatService ProductVarinatService;        // public field - PascalCase
+    protected IOrderItemService OrderItemService;               // protected field - PascalCase
+    private IAddressService _addressService;                    // private instant field - _camelCase  with ( _ )
+    internal IShippingService _shippingService;                 // internal field - _camelCase  with ( _ )
 
-      var person = new Person();                          // use var when the type is explicitly named on the right-hand side
-      
-      var process = StartProcess();                       // don't use var when the type is explicitly named on the right-hand side, rather use string process = StartProcess()
+    // field with readonly access modifier
+    private readonly string _readonlyPrivate;
+    private readonly int _value;
+    public readonly IDiscountService DiscountService;
+    public static readonly ICampaignService CampaignService;
+    protected readonly IShiipingAddressService ShiipingAddressService;
+    protected static readonly IWarehouseService WarehouseService;
 
-      string process1 = StartProcess();
-      Person person1 = new();
+    // constructor
+    public OrderService(IHtmlFormatter htmlFormatter,    // parameter name - camelCase   
+        IProductService productService,
+        IRepository<Address> addressRepository,
+        IRepository<Customer> customerRepository,
+        IRepository<Order> orderRepository,
+        IRepository<OrderItem> orderItemRepository,
+        IRepository<OrderNote> orderNoteRepository,
+        IRepository<Product> productRepository,
+        IRepository<ProductWarehouseInventory> productWarehouseInventoryRepository,
+        IRepository<RecurringPayment> recurringPaymentRepository,
+        IRepository<RecurringPaymentHistory> recurringPaymentHistoryRepository,
+        IShipmentService shipmentService)
+    {
+        _htmlFormatter = htmlFormatter;
+        _productService = productService;
+        _addressRepository = addressRepository;
+        _customerRepository = customerRepository;
+        _orderRepository = orderRepository;
+        _orderItemRepository = orderItemRepository;
+        _orderNoteRepository = orderNoteRepository;
+        _productRepository = productRepository;
+        _productWarehouseInventoryRepository = productWarehouseInventoryRepository;
+        _recurringPaymentRepository = recurringPaymentRepository;
+        _recurringPaymentHistoryRepository = recurringPaymentHistoryRepository;
+        _shipmentService = shipmentService;
+    }
 
-      return string.Empty;
-  }
+    # region private methods
+    public bool HasDiscount(){
+        return true;
+    }
+
+    public bool CanView(){
+        return false;
+    }
+
+    public bool IsActive(){
+        return true;
+    }
+
+    public bool ValidatePayment(int orderId, Address address)           // method name - PascalCase               
+    {
+        return true;
+    }
+
+    private string ValidAddress()                          
+    {
+        return string.Empty;
+    }
+    #endregion
+
+    public Task<Pagination<Order>> GetsAsync(int pageIndex, 
+        int pageSize, 
+        string searchText)                                               // method parameter name - camelCase
+    {
+        int firstPage = 1;                                              // method parameter name - camelCase
+        const int OnePerson = 1;                                        // local const - PascalCase
+        throw new NotImplementedException();
+    }
+
+    public async Task<Order> GetOrderByNumberAsync(string orderNumber)   // async method name - PascalCase with Async postfix
+    {
+        return await Task.FromResult(string.Empty);
+    }
+
+    public virtual async Task<Order> GetOrderByIdAsync(int orderId)     
+    {
+        return await _orderRepository.GetByIdAsync(orderId, cache => default, useShortTermCache: true);
+    }
+
+    public virtual async Task<IList<Order>> GetOrdersByGuidsAsync(Guid[] orderGuids)
+    {
+        if (orderGuids == null)
+            return null;
+            
+        var orders = await _orderRepository.GetOrdersByGuidsAsync(orderGuids);
+
+        return orders;
+    }
+
+    public virtual async Task<Order> GetOrderByGuidAsync(Guid orderGuid)
+    {
+        if (orderGuid == Guid.Empty)
+            return null;
+
+        var order = await _orderRepository.FirstOrDefaultAsync(orderGuid);
+
+        return order;
+    }
+
+    public virtual async Task<ProcessPaymentResult> ProcessPaymentAsync(long orderId, 
+        PaymentInformation paymentInformation)                      // camelCase - method parameter
+    {
+        const decimal MinPayment = 1000;                            // PascalCase - local const variable 
+        const int MinItem = 1;
+        decimal extraCharge = 0;                                    // camelCase - local variable
+        decimal totalPyableAmount = 0;
+        
+        var order = _orderRepository.GetByIdAsync(orderId);
+        if(order is null)
+            throw new DataNotFoundException("No order found");
+
+        var totalItem = order.OrderItems.Count;
+        totalPayableAmount = order.OrderItems.Sum(x=> x.TotalAmount);
+        if(totalItem < MinItem || totalPayableAmount < MinPayment){
+            Charge charge = new();                                  // don't use var when the type is explicitly named on the right-hand side
+            charge.ExtraCharge = totalPayableAmount * .15;
+            charge.OrderId = orderId;
+
+            order.TotalPyableAmount = totalPayableAmount + extraCharge;
+            
+            await _orderRepository.UpdateCartInformation(order, charge);
+        }
+        
+        if (order.TotalPyableAmount == decimal.Zero)
+        {
+            var result = new ProcessPaymentResult                   // use var when the type is explicitly named on the right-hand side
+            {
+                NewPaymentStatus = PaymentStatus.Paid,
+                orderId = orderId
+            };
+
+            return result;
+        }
+
+        if (!string.IsNullOrWhiteSpace(payment.CreditCardNumber))
+            ValidatePaymentInformation(payment);
+
+        var customer = await _customerRepository.GetCustomerByIdAsync(payment.CustomerId);
+        var paymentResult = await paymentService.ProcessPaymentAsync(orderId, payment, customer);
+
+        return paymentResult
+    }
 }
 ```
 
@@ -542,23 +668,29 @@ public record Person
 [interface](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/interface)  
 
 #### abstract
-Generics were added to .NET Framework 2.0. The feature introduced a new kind of identifier called type parameter.
+✅ Do abstract class name with PascalCase  
+✅ Do follow class for naming convention 
+```cs
+abstract class Shape
+{
+    public abstract int GetArea();
+}
 
-✅  DO name generic type parameters with descriptive names unless a single-letter name is completely self-explanatory and a descriptive name would not add value.  
-✅  CONSIDER using T as the type parameter name for types with one single-letter type parameter.
-```
-public int IComparer<T> { ... }
-public delegate bool Predicate<T>(T item);
-public struct Nullable<T> where T:struct { ... }
-```
-✅  DO prefix descriptive type parameter names with T.
-```
-public interface ISessionChannel<TSession> where TSession : ISession {
-    TSession Session { get; }
+class Square : Shape
+{
+    private int _side;
+
+    public Square(int n) => _side = n;
+
+    public override int GetArea() => _side * _side;
+
+    static void Main()
+    {
+        var sq = new Square(12);
+        Console.WriteLine($"Area of the square = {sq.GetArea()}");
+    }
 }
 ```
-✅ CONSIDER indicating constraints placed on a type parameter in the name of the parameter.
-  For example, a parameter constrained to ISession might be called TSession.
 
 [:top: Back to top](#dotnet-naming-convention)
 [abstract](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/abstract)
@@ -627,9 +759,16 @@ The field-naming guidelines apply to static public and protected fields. Interna
 ❌ DO NOT use a prefix for field names.  
 ❌ DO NOT use "Before" or "After" prefixes or postfixes to indicate pre- and post-events. Use present and past tenses as just described.  
   For example, do not use "g_" or "s_" to indicate static fields.  
+
 #### Generic
+Generics were added to .NET Framework 2.0. The feature introduced a new kind of identifier called type parameter.
+
+✅  DO name generic type parameters with descriptive names unless a single-letter name is completely self-explanatory and a descriptive name would not add value.  
+✅  CONSIDER using T as the type parameter name for types with one single-letter type parameter.
 ```cs
-// generic
+public int IComparer<T> { ... }
+public delegate bool Predicate<T>(T item);
+public struct Nullable<T> where T:struct { ... }
 
 // use single letter for generic type
 // use T as type parameter
@@ -637,13 +776,18 @@ public interface ISessionHelper<T>
 {
     T Session { get; }
 }
-
+```
+✅  DO prefix descriptive type parameter names with T.
+```cs
 // add descriptive type parameter with prefix T
-public interface ISessionChannel<TSession>
-{
+public interface ISessionChannel<TSession> where TSession : ISession {
     TSession Session { get; }
 }
 ```
+✅ CONSIDER indicating constraints placed on a type parameter in the name of the parameter.
+  For example, a parameter constrained to ISession might be called TSession.
+```cs
+
 #### Nullable types
 #### Tuples
 
